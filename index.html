@@ -11,8 +11,22 @@
          text-transform: uppercase;
       }
 
-      h3 {
+      span {
+         font-size: 24px;
          text-transform: uppercase;
+      }
+
+      .images {
+         margin-top: 20px;
+      }
+
+      .buscar {
+         margin-top: 20px;
+      }
+
+      img {
+         width: 330px;
+         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, .3);
       }
    </style>
 </head>
@@ -20,22 +34,27 @@
 <body>
    <h1>Pokedex</h1>
 
-   <h3 id="nomePokemonChoose"></h3>
+   <span id="nomePokemonChoose"></span> <span id="numeroPokedex"></span>
 
-   <input type="text" name="nomePokemon" id="nomePokemon" />
-   <button id="buscarPokemon" onclick="buscarPokemon()">Buscar pokemon</button>
+   <div class="buscar">
+      <input type="text" name="nomePokemon" id="nomePokemon" />
+      <button id="buscarPokemon" onclick="buscarPokemon()">Buscar pokemon</button>
+   </div>
 
-   <img src="" alt="" id="frontImagePokemon" />
-   <img src="" alt="" id="backImagePokemon" />
+   <div class="images">
+      <img src="" alt="" id="frontImagePokemon" />
+      <img src="" alt="" id="backImagePokemon" />
 
-   <img src="" alt="" id="frontShinyImagePokemon" />
-   <img src="" alt="" id="backShinyImagePokemon" />
+      <img src="" alt="" id="frontShinyImagePokemon" />
+      <img src="" alt="" id="backShinyImagePokemon" />
+   </div>
 
    <script>
 
       function buscarPokemon() {
          const nomePokemon = document.getElementById("nomePokemon")
          const nomePokemonChoose = document.getElementById("nomePokemonChoose")
+         const numeroPokedex = document.getElementById("numeroPokedex")
 
          const imageFront = document.getElementById("frontImagePokemon")
          const imageBack = document.getElementById("backImagePokemon")
@@ -55,6 +74,7 @@
                imageBack.src = data.sprites.back_default;
                imageShinyFront.src = data.sprites.front_shiny;
                imageShinyBack.src = data.sprites.back_shiny;
+               numeroPokedex.textContent = "#" + data.id;
             });
       }
    </script>
