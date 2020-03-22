@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Pokedex</title>
+   <style>
+      h1 {
+         color: red;
+         text-transform: uppercase;
+      }
+
+      h3 {
+         text-transform: uppercase;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Pokedex</h1>
+
+   <h3 id="nomePokemonChoose"></h3>
+
+   <input type="text" name="nomePokemon" id="nomePokemon" />
+   <button id="buscarPokemon" onclick="buscarPokemon()">Buscar pokemon</button>
+
+   <img src="" alt="" id="frontImagePokemon" />
+   <img src="" alt="" id="backImagePokemon" />
+
+   <img src="" alt="" id="frontShinyImagePokemon" />
+   <img src="" alt="" id="backShinyImagePokemon" />
+
+   <script>
+
+      function buscarPokemon() {
+         const nomePokemon = document.getElementById("nomePokemon")
+         const nomePokemonChoose = document.getElementById("nomePokemonChoose")
+
+         const imageFront = document.getElementById("frontImagePokemon")
+         const imageBack = document.getElementById("backImagePokemon")
+
+         const imageShinyFront = document.getElementById("frontShinyImagePokemon")
+         const imageShinyBack = document.getElementById("backShinyImagePokemon")
+
+         let pokemon;
+
+         fetch('https://pokeapi.co/api/v2/pokemon/' + nomePokemon.value + '/')
+            .then((response) => {
+               return response.json();
+            })
+            .then((data) => {
+               nomePokemonChoose.textContent = data.name;
+               imageFront.src = data.sprites.front_default;
+               imageBack.src = data.sprites.back_default;
+               imageShinyFront.src = data.sprites.front_shiny;
+               imageShinyBack.src = data.sprites.back_shiny;
+            });
+      }
+   </script>
+</body>
+
+</html>
